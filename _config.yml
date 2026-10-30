@@ -1,0 +1,20 @@
+title: APEx RDI
+description: Research & Development Institute, University of Lincoln
+
+collections:
+    team:
+        output: true
+        permalink: /team/:name/
+    projects:
+        output: true
+        permalink: /projects/:name/
+    papers:
+        output: false
+
+defaults:
+    - scope: {path: "", type: team}
+      values: {layout: person}
+    - scope: {path: "", type: projects}
+      values: {layout: project}
+    - scope: {path: ""}
+      values: {layout: default}

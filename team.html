@@ -1,0 +1,11 @@
+---
+title: Team
+permalink: /team/
+---
+<h1>Our team</h1>
+<ul class="cards">
+{% assign people = site.team | sort: "order" %}
+{% for p in people %}
+  <li><a href="{{ p.url | relative_url }}"><strong>{{ p.title }}</strong></a><br>{{ p.role }}</li>
+{% endfor %}
+</ul>

@@ -1,0 +1,15 @@
+---
+title: Projects
+permalink: /projects/
+---
+<h1>Projects</h1>
+{% assign groups = "current,past" | split: "," %}
+{% for g in groups %}
+  {% assign items = site.projects | where: "status", g | sort: "start" | reverse %}
+  <h2>{{ g | capitalize }} projects</h2>
+  <ul>
+  {% for p in items %}
+    <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a> — {{ p.summary }}</li>
+  {% endfor %}
+  </ul>
+{% endfor %}

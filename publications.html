@@ -1,0 +1,19 @@
+---
+title: Publications
+permalink: /publications/
+---
+<h1>Publications</h1>
+{% assign groups = "published,submitted,in-preparation" | split: "," %}
+{% for g in groups %}
+  {% assign items = site.papers | where: "status", g | sort: "year" | reverse %}
+  {% if items.size > 0 %}
+  <h2>{{ g | replace: "-", " " | capitalize }}</h2>
+  <ul class="pubs">
+  {% for p in items %}
+    <li>{{ p.authors }} ({{ p.year }}). <strong>{{ p.title }}</strong>.
+      {% if p.venue %}<em>{{ p.venue }}</em>.{% endif %}
+      {% if p.link %}<a href="{{ p.link }}">Link</a>{% endif %}</li>
+  {% endfor %}
+  </ul>
+  {% endif %}
+{% endfor %}
