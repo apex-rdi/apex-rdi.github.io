@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
-  <header>
-    <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <nav>
-      <a href="{{ '/about/' | relative_url }}">About</a>
-      <a href="{{ '/team/' | relative_url }}">Team</a>
-      <a href="{{ '/projects/' | relative_url }}">Projects</a>
-      <a href="{{ '/publications/' | relative_url }}">Publications</a>
-    </nav>
-  </header>
-  <main>{{ content }}</main>
-  <footer>© {{ site.time | date: '%Y' }} {{ site.title }}, University of Lincoln</footer>
+    <header>
+        <div class="header-inner">
+            <a class="brand" href="{{ '/' | relative_url }}">
+                <span class="brand-mark">LOGO</span>
+                <span class=""brand-text">
+                    <strong>APEx RDI</strong>
+                    <small>University of Lincoln</small>
+                </span>
+            </a>
+
+            <nav class ="site-nav" aria-label="Main">    
+                {% for item in site.data.navigation %}
+                    {% assign active = false %}
+
+                    {% if item.url == "/" %}
+                        {% if page.url == "/" or page.url == "/index.html" %}
+                            {% assign active = true %}
+                        {% endif %}
+                    {% else %}
+                        {% assign start = page.url | slice: 0, item.url.size %}
+                        {% if start == item.url %}
+                            {% assign active = true %}
+                        {% endif %}
+                    {% endif %}
+
+                    <a class="nav-btn{% if active %} is-active{% endif %}"
+                       href="{{ item.url | relative_url }}"
+                       {% if active %} aria-current="page"{% endif %}>
+                        {{ item.title }}
+                    </a>
+                {% endfor %}
+            </nav>
+        </div>
+    </header>
+    <main>{{ content }}</main>
+    <footer>© {{ site.time | date: '%Y' }} {{ site.title }}, University of Lincoln</footer>
 </body>
 </html>

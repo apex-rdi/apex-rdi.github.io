@@ -1,6 +1,6 @@
 title: APEx RDI
 description: Research & Development Institute, University of Lincoln
-
+exclude: [Gemfile, Gemfile.lock, README.md]
 collections:
     team:
         output: true
