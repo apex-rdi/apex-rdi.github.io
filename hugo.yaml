@@ -1,0 +1,25 @@
+baseURL: https://apex-rdi.github.io/
+locale: en-gb
+title: APEx RDI
+disableKinds: [taxonomy, term]
+
+params:
+  description: "Research & Development Institute, University of Lincoln"
+
+menus:
+  main:
+    - name: Home
+      url: /
+      weight: 10
+    - name: About us
+      url: /about
+      weight: 20
+    - name: Team
+      url: /team
+      weight: 30
+    - name: Projects
+      url: /projects
+      weight: 40
+    - name: Publications
+      url: /publications
+      weight: 50

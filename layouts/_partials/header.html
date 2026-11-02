@@ -1,0 +1,23 @@
+<header class = "site-header">
+    <div class = "header-inner">
+        <a class = "brand" href = " {{ "/" | relURL }} ">
+            <span class = "brand-mark">LOGO</span>
+            <span class = "brand-text">
+                <strong>{{ site.Title }}</strong>
+                <small>University of Lincoln</small>
+            </span>
+        </a>
+
+        <nav class = "site-nav" aira-label="Main">
+            {{ $current := . }}
+            {{ range site.Menus.main }}
+                {{ $active := or ( $current.IsMenuCurrent "main" .) ( $current.HasMenuCurrent "main" .)}}
+                <a class = "nav-btn {{ if $active }} is-active {{ end }}"
+                    href = "{{ .URL }}"
+                    {{ if $active }} aria-current = "page" {{ end }}>
+                    {{ .Name }}
+                </a>
+            {{end}}
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  {{ range slice "current" "past" }}
+    {{ $items := where $.Pages "Params.status" . }}
+    <h2>{{ . | strings.FirstUpper }} projects</h2>
+    <ul>
+      {{ range sort $items "Params.start" "desc" }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> — {{ .Params.summary }}</li>
+      {{ end }}
+    </ul>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if not .IsHome }} {{ .Title }} · {{ end }}{{ site.Title }}</title>
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+<body>
+    {{ partial "header.html" . }}
+
+    <main class = "site-main">
+            <article class = "content-box">
+                {{ block "main" . }}{{ end }}
+            </article>
+    </main>
+
+    <footer class = "site-footer">
+        © {{ now.Year }} {{ site.Title }}, University of Lincoln
+    </footer>
+</body>
+</html>

@@ -1,0 +1,171 @@
+/* ---------- Colours -----------*/
+:root {
+  --accent: #1324bb;      /* button highlight colour */
+  --bar: #0b0b0c;         /* top bar background */
+  --bar-text: #f5f5f5;    /* top bar text */
+  --page-bg: #f2f2f4;     /* grey behind the content box */
+  --card-bg: #ffffff;     /* the content box itself */
+  --text: #1d1d1f;
+  --muted: #666;
+}
+
+/* ---------- Base -----------*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  line-height: 1.65;
+}
+
+/* ---------- Top Bar -----------*/
+
+.site-header {
+  background: var(--bar);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--bar-text);
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 60px;
+  height: 60px;
+  border-radius: 50% 50% 50% 50%;
+  background: var(--accent);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-text small {
+  color: #aaa;
+  font-size: 0.75rem;
+}
+
+/* ---------- Nav Buttons -----------*/
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nav-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  color: var(--bar-text);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.04rem;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,0.08);;
+  border-color: rgba(255,255,255,0.25);
+}
+
+.nav-btn.is-active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.nav-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Top Bar -----------*/
+
+.site-main {
+  padding: 40px 16px;
+}
+
+.content-box {
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  padding: 40px 48px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  text-align: left;
+}
+
+.content-box h1 {
+  margin-top: 0;
+}
+
+/* ---------- Page bits -----------*/
+
+.meta { 
+  color: var(--muted); 
+}
+
+.cards { 
+  list-style: none; 
+  padding: 0; 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  gap: 16px; 
+}
+
+.cards li { 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  padding: 12px; 
+}
+
+.pubs li { 
+  margin-bottom: 10px; 
+}
+
+/* ---------- Footer -----------*/
+
+.site-footer { 
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 0 16px 32px; 
+}
+
+/* ---------- Phones -----------*/
+
+@media (max-width: 640px) {
+  .content-box {
+    padding: 24px 20px;
+  }
+  .header-inner {
+    justify-content: center;
+  }
+}

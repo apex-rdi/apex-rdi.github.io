@@ -1,0 +1,26 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+
+  {{ $groups := slice
+      (dict "key" "published"      "label" "Published")
+      (dict "key" "submitted"      "label" "Submitted")
+      (dict "key" "in-preparation" "label" "In preparation") }}
+
+  {{ range $groups }}
+    {{ $items := where $.Pages "Params.status" .key }}
+    {{ if $items }}
+      <h2>{{ .label }}</h2>
+      <ul class="pubs">
+        {{ range sort $items "Params.year" "desc" }}
+          <li>
+            {{ .Params.authors }} ({{ .Params.year }}).
+            <strong>{{ .Title }}</strong>.
+            {{ with .Params.venue }}<em>{{ . }}</em>.{{ end }}
+            {{ with .Params.link }}<a href="{{ . }}">Link</a>{{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  {{ end }}
+{{ end }}
