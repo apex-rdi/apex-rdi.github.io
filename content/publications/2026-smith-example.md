@@ -1,7 +1,8 @@
 ---
-title: An Example Paper Title
+title: An Example Preprint Title
 authors: C. Berger
-status: Published
+status: preprint
 venue: Journal of Examples
 year: 2026
+arxiv: 2601.01234
 ---

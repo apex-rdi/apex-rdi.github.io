@@ -1,6 +1,8 @@
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   {{ .Content }}
+
+  <h2> Our Team</h2>
   <ul class="cards">
     {{ range .Pages.ByWeight }}
       <li>

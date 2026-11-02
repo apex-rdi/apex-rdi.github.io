@@ -3,9 +3,8 @@
   {{ .Content }}
 
   {{ $groups := slice
-      (dict "key" "published"      "label" "Published")
-      (dict "key" "submitted"      "label" "Submitted")
-      (dict "key" "in-preparation" "label" "In preparation") }}
+      (dict "key" "published" "label" "Published")
+      (dict "key" "preprint"  "label" "Preprints") }}
 
   {{ range $groups }}
     {{ $items := where $.Pages "Params.status" .key }}
@@ -17,7 +16,9 @@
             {{ .Params.authors }} ({{ .Params.year }}).
             <strong>{{ .Title }}</strong>.
             {{ with .Params.venue }}<em>{{ . }}</em>.{{ end }}
-            {{ with .Params.link }}<a href="{{ . }}">Link</a>{{ end }}
+            {{ with .Params.doi }}<a href="https://doi.org/{{ . }}">DOI</a>{{ end }}
+            {{ with .Params.arxiv }}<a href="https://arxiv.org/abs/{{ . }}">arXiv</a>{{ end }}
+            {{ with .Params.pdf }}<a href="{{ . }}">PDF</a>{{ end }}
           </li>
         {{ end }}
       </ul>

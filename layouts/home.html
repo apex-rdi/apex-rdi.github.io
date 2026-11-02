@@ -1,3 +1,20 @@
 {{ define "main" }}
-    {{ .Content }}
+  {{ .Content }}
+
+  <section class="news">
+    <h2>Latest news</h2>
+    {{ $news := where site.RegularPages "Section" "news" }}
+    {{ range first 3 $news.ByDate.Reverse }}
+      <article class="news-item">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p>{{ .Summary | plainify }}</p>
+      </article>
+    {{ else }}
+      <p>No news yet.</p>
+    {{ end }}
+    {{ with site.GetPage "/news" }}
+      <p><a href="{{ .RelPermalink }}">All news →</a></p>
+    {{ end }}
+  </section>
 {{ end }}

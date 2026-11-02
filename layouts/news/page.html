@@ -1,0 +1,8 @@
+{{ define "main" }}
+  <p class="meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+  </p>
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <p><a href="{{ .Parent.RelPermalink }}">← All news</a></p>
+{{ end }}
