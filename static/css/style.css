@@ -1,11 +1,11 @@
 /* ---------- Colours -----------*/
 :root {
-  --accent: #1324bb;      /* button highlight colour */
-  --bar: #0b0b0c;         /* top bar background */
-  --bar-text: #f5f5f5;    /* top bar text */
-  --page-bg: #f2f2f4;     /* grey behind the content box */
+  --accent: #2f7d4f;      /* button highlight colour */
+  --bar: #0f1f17;         /* top bar background */
+  --bar-text: #ffffff;    /* top bar text */
+  --page-bg: #f5f3ee;     /* grey behind the content box */
   --card-bg: #ffffff;     /* the content box itself */
-  --text: #1d1d1f;
+  --text: #1f2a24;
   --muted: #666;
 }
 

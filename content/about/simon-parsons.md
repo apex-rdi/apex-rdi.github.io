@@ -1,6 +1,6 @@
 ---
 title: Dr Simon Parsons
-role: Professor
+role: Global Professor
 weight: 2
 email: sparsons@lincoln.ac.uk
 ---
