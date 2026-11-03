@@ -5,9 +5,9 @@ year: 2026
 type: preprint
 venue: arXiv
 tags: [robotics, human-robot-interaction]
-arxiv: 2604.01234
+arxiv: 1234.56789
 bibtex: |
-  @article{patel2026safeharvest,
+  @article{berger2026example2,
     title   = {An Example Paper Title},
     author  = {Berger, C.},
     journal = {arXiv preprint arXiv:2604.01234},
