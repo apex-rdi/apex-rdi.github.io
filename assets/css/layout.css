@@ -1,0 +1,39 @@
+/* ---------- Top Bar -----------*/
+
+.site-main {
+  padding: 40px 16px;
+}
+
+.content-box {
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  padding: 40px 48px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  text-align: left;
+}
+
+.content-box h1 {
+  margin-top: 0;
+}
+
+/* ---------- Footer -----------*/
+
+.site-footer { 
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 0 16px 32px; 
+}
+
+/* ---------- Phones -----------*/
+
+@media (max-width: 640px) {
+  .content-box {
+    padding: 24px 20px;
+  }
+  .header-inner {
+    justify-content: center;
+  }
+}

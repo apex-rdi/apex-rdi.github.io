@@ -1,0 +1,30 @@
+/* ---------- Colours -----------*/
+:root {
+  --bar: #0f1f17;         /* top bar background */
+  --bar-text: #f3f1ea;    /* top bar text */
+  --nav-hover: rgba(255,255,255,.10);
+  --accent: #2f7d4f;      /* button highlight colour */
+  --accent-text: #ffffff; 
+  --page-bg: #f5f3ee;     /* grey behind the content box */
+  --card-bg: #fffdf8;     /* the content box itself */
+  --text: #1f2a24;
+  --muted: #5d675f;
+  --link: #256b42;
+  --border: #e4dfd3;
+}
+
+a { color: var(--link); }
+
+/* ---------- Base -----------*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  line-height: 1.65;
+}

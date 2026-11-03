@@ -1,0 +1,19 @@
+/* ---------- Page bits -----------*/
+
+.meta { 
+  color: var(--muted); 
+}
+
+.cards { 
+  list-style: none; 
+  padding: 0; 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  gap: 16px; 
+}
+
+.cards li { 
+  border: 1px solid var(--border); 
+  border-radius: 8px; 
+  padding: 12px; 
+}

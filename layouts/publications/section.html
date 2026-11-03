@@ -1,27 +1,112 @@
 {{ define "main" }}
+  {{ $papers := .Pages }}
+
+  {{/* Names of APEx members, as they appear in author lists */}}
+  {{ $members := slice }}
+  {{ with site.GetPage "/about" }}
+    {{ range .Pages }}
+      {{ with .Params.pub_name }}{{ $members = $members | append . }}{{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{/* Every year and tag used, without duplicates */}}
+  {{ $years := slice }}
+  {{ $tags := slice }}
+  {{ range $papers }}
+    {{ $years = $years | append .Params.year }}
+    {{ with .Params.tags }}{{ $tags = $tags | append . }}{{ end }}
+  {{ end }}
+  {{ $years = sort (uniq $years) "value" "desc" }}
+  {{ $tags = sort (uniq $tags) }}
+
+  {{ $types := slice
+      (dict "key" "conference" "label" "Conference")
+      (dict "key" "journal"    "label" "Journal")
+      (dict "key" "workshop"   "label" "Workshop")
+      (dict "key" "demo"       "label" "Demo")
+      (dict "key" "preprint"   "label" "Preprint")
+      (dict "key" "other"      "label" "Other") }}
+
   <h1>{{ .Title }}</h1>
   {{ .Content }}
 
-  {{ $groups := slice
-      (dict "key" "published" "label" "Published")
-      (dict "key" "preprint"  "label" "Preprints") }}
+  <div class="pub-filters">
+    <div class="filter-row" data-filter="type">
+      <span class="filter-label">Category</span>
+      <button type="button" class="chip is-on" data-value="all">All <small>{{ len $papers }}</small></button>
+      {{ range $types }}
+        {{ $n := len (where $papers "Params.type" .key) }}
+        {{ if $n }}
+          <button type="button" class="chip type-{{ .key }}" data-value="{{ .key }}">{{ .label }} <small>{{ $n }}</small></button>
+        {{ end }}
+      {{ end }}
+    </div>
 
-  {{ range $groups }}
-    {{ $items := where $.Pages "Params.status" .key }}
-    {{ if $items }}
-      <h2>{{ .label }}</h2>
-      <ul class="pubs">
-        {{ range sort $items "Params.year" "desc" }}
-          <li>
-            {{ .Params.authors }} ({{ .Params.year }}).
-            <strong>{{ .Title }}</strong>.
-            {{ with .Params.venue }}<em>{{ . }}</em>.{{ end }}
+    <div class="filter-row" data-filter="year">
+      <span class="filter-label">Year</span>
+      <button type="button" class="chip is-on" data-value="all">All</button>
+      {{ range $years }}
+        <button type="button" class="chip" data-value="{{ . }}">{{ . }} <small>{{ len (where $papers "Params.year" .) }}</small></button>
+      {{ end }}
+    </div>
+
+    {{ with $tags }}
+      <div class="filter-row" data-filter="tag">
+        <span class="filter-label">Tag</span>
+        <button type="button" class="chip is-on" data-value="all">All</button>
+        {{ range . }}
+          <button type="button" class="chip" data-value="{{ . }}">{{ . }} <small>{{ len (where $papers "Params.tags" "intersect" (slice .)) }}</small></button>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+
+  {{ range $years }}
+    <section class="pub-year">
+      <h2>{{ . }}</h2>
+
+      {{ range where $papers "Params.year" . }}
+        <article class="pub"
+                 data-type="{{ .Params.type }}"
+                 data-year="{{ .Params.year }}"
+                 data-tags="{{ delimit (.Params.tags | default slice) " " }}">
+
+          <h3 class="pub-title">{{ .Title }}</h3>
+
+          <p class="pub-venue">
+            {{ .Params.venue }} ({{ .Params.year }})
+            {{ with .Params.type }}<span class="badge type-{{ . }}">{{ . }}</span>{{ end }}
+            {{ range .Params.tags }}<span class="badge tag">{{ . }}</span>{{ end }}
+          </p>
+
+          <p class="pub-authors">
+            {{ $authors := .Params.authors }}
+            {{ $last := sub (len $authors) 1 }}
+            {{ range $i, $a := $authors }}
+              {{- if gt $i 0 }}{{ if eq $i $last }} &amp; {{ else }}, {{ end }}{{ end -}}
+              {{- if in $members $a }}<strong>{{ $a }}</strong>{{ else }}{{ $a }}{{ end -}}
+            {{ end }}
+          </p>
+
+          <p class="pub-links">
             {{ with .Params.doi }}<a href="https://doi.org/{{ . }}">DOI</a>{{ end }}
             {{ with .Params.arxiv }}<a href="https://arxiv.org/abs/{{ . }}">arXiv</a>{{ end }}
             {{ with .Params.pdf }}<a href="{{ . }}">PDF</a>{{ end }}
-          </li>
-        {{ end }}
-      </ul>
-    {{ end }}
+            {{ with .Params.code }}<a href="{{ . }}">Code</a>{{ end }}
+          </p>
+
+          {{ with .Params.bibtex }}
+            <details class="pub-bibtex">
+              <summary>BibTeX</summary>
+              <pre><code>{{ . }}</code></pre>
+            </details>
+          {{ end }}
+        </article>
+      {{ end }}
+    </section>
   {{ end }}
+
+  <p class="pub-empty" hidden>No publications match these filters.</p>
+
+  <script src="{{ "js/publications.js" | relURL }}"></script>
 {{ end }}

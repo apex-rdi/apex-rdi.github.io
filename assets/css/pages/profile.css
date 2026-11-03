@@ -1,0 +1,107 @@
+/* ---------- Personal Profile -----------*/
+
+.content-box:has(.profile) {
+  max-width: 1040px;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  align-items: left;
+}
+
+.profile-side {
+  text-align: center;
+}
+
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 16px;
+}
+
+.profile-initials {
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+
+.profile-name { font-size: 1.5rem; margin: 0 0 4px; }
+.profile-role { color: var(--muted); margin: 0; }
+.profile-org { margin: 0 0 16px; font-weight: 600; }
+
+.profile-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.profile-links a {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.profile-links a:hover {
+  border-color: var(--link);
+  color: var(--link);
+}
+
+.profile-main h2 { margin-top: 0; font-size: 2rem; }
+
+.profile-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.profile-columns h3 { margin: 0 0 8px; }
+
+.profile-list { list-style: none; padding: 0; margin: 0; }
+
+.profile-list li {
+  padding-left: 18px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.profile-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.profile-sub {
+  display: block;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+  .profile,
+  .profile-columns {
+    grid-template-columns: 1fr;
+  }
+  .profile { gap: 24px; }
+}

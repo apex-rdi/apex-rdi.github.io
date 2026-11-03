@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0f1f17">
     <title>{{ if not .IsHome }} {{ .Title }} · {{ end }}{{ site.Title }}</title>
-    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
-</head>
+    {{ $css := slice
+        (resources.Get "css/base.css")
+        (resources.Get "css/layout.css")
+        (resources.Get "css/header.css")
+        (resources.Get "css/components.css")
+        (resources.Get "css/pages/news.css")
+        (resources.Get "css/pages/profile.css")
+        (resources.Get "css/pages/publications.css")
+    | resources.Concat "css/site.css" }}
+    {{ if hugo.IsProduction }}
+    {{ $css = $css | minify | fingerprint }}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}"></head>
 <body>
     {{ partial "header.html" . }}
 
