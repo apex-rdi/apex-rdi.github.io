@@ -11,8 +11,8 @@
         <nav class = "site-nav" aira-label="Main">
             {{ $current := . }}
             {{ range site.Menus.main }}
-                {{ $active := or ( $current.IsMenuCurrent "main" .) ( $current.HasMenuCurrent "main" .)}}
-                <a class = "nav-btn {{ if $active }} is-active {{ end }}"
+                {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+                    <a class="nav-btn{{ if $active }} is-active{{ end }}"
                     href = "{{ .URL }}"
                     {{ if $active }} aria-current = "page" {{ end }}>
                     {{ .Name }}

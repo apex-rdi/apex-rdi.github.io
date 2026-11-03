@@ -1,8 +1,60 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  <p class="meta">
-    {{ .Params.role }}
-    {{ with .Params.email }} · <a href="mailto:{{ . }}">{{ . }}</a>{{ end }}
-  </p>
-  {{ .Content }}
+<div class="profile">
+
+  <aside class="profile-side">
+    {{ with .Resources.GetMatch "avatar.*" }}
+      {{ $photo := .Fill "400x400 Center" }}
+      <img class="profile-photo" src="{{ $photo.RelPermalink }}"
+           width="200" height="200" alt="Photo of {{ $.Title }}">
+    {{ else }}
+      <div class="profile-photo profile-initials" aria-hidden="true">
+        {{ range first 2 (split (replace .Title "Dr " "") " ") }}{{ substr . 0 1 }}{{ end }}
+      </div>
+    {{ end }}
+
+    <h1 class="profile-name">{{ .Title }}</h1>
+    {{ with .Params.role }}<p class="profile-role">{{ . }}</p>{{ end }}
+    {{ with .Params.organisation }}<p class="profile-org">{{ . }}</p>{{ end }}
+
+    {{ with .Params.links }}
+      <ul class="profile-links">
+        {{ range . }}
+          <li><a href="{{ .url }}">{{ .name }}</a></li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  </aside>
+
+  <div class="profile-main">
+    <h2>Biography</h2>
+    {{ .Content }}
+
+    <div class="profile-columns">
+      {{ with .Params.interests }}
+        <section>
+          <h3>Interests</h3>
+          <ul class="profile-list">
+            {{ range . }}<li>{{ . }}</li>{{ end }}
+          </ul>
+        </section>
+      {{ end }}
+
+      {{ with .Params.education }}
+        <section>
+          <h3>Education</h3>
+          <ul class="profile-list">
+            {{ range . }}
+              <li>
+                {{ .qualification }}, {{ .year }}
+                <span class="profile-sub">{{ .institution }}</span>
+              </li>
+            {{ end }}
+          </ul>
+        </section>
+      {{ end }}
+    </div>
+  </div>
+
+</div>
+<p><a href="{{ .Parent.RelPermalink }}">← Back to About us</a></p>
 {{ end }}

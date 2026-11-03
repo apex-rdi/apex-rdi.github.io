@@ -9,17 +9,17 @@ params:
 menus:
   main:
     - name: Home
-      url: /
+      pageRef: /
       weight: 10
     - name: News
-      url: /news
+      pageRef: /news
       weight: 15
     - name: About us
-      url: /about
+      pageRef: /about
       weight: 20
     - name: Projects
-      url: /projects
-      weight: 30
-    - name: Publications
-      url: /publications
+      pageRef: /projects
       weight: 40
+    - name: Publications
+      pageRef: /publications
+      weight: 50
