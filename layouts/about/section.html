@@ -2,13 +2,12 @@
   <h1>{{ .Title }}</h1>
   {{ .Content }}
 
-  <h2> Our Team</h2>
-  <ul class="cards">
-    {{ range .Pages.ByWeight }}
-      <li>
-        <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a><br>
-        {{ .Params.role }}
-      </li>
+  {{ range slice "/about/people" "/about/affiliates" }}
+    {{ with site.GetPage . }}
+      {{ if .Pages }}
+        <h2>{{ .Title }}</h2>
+        {{ partial "people-cards.html" . }}
+      {{ end }}
     {{ end }}
-  </ul>
+  {{ end }}
 {{ end }}

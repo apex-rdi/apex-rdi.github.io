@@ -56,5 +56,7 @@
   </div>
 
 </div>
-<p><a href="{{ .Parent.RelPermalink }}">← Back to About us</a></p>
+{{ with site.GetPage "/about" }}
+  <p><a href="{{ .RelPermalink }}">← Back to About us</a></p>
+{{ end }}
 {{ end }}

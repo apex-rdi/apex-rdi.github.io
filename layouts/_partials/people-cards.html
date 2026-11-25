@@ -1,0 +1,12 @@
+{{/* Expects: a section page, e.g. site.GetPage "/about/people" */}}
+{{ with .Pages.ByWeight }}
+  <ul class="cards">
+    {{ range . }}
+      <li>
+        <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a><br>
+        {{ .Params.role }}
+        {{ with .Params.organisation }}<br><span class="meta">{{ . }}</span>{{ end }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}

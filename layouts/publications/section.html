@@ -3,7 +3,7 @@
 
   {{/* Names of APEx members, as they appear in author lists */}}
   {{ $members := slice }}
-  {{ with site.GetPage "/about" }}
+  {{ with site.GetPage "/about/people" }}
     {{ range .Pages }}
       {{ with .Params.pub_name }}{{ $members = $members | append . }}{{ end }}
     {{ end }}
